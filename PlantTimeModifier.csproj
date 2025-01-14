@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -93,4 +94,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "(ConfigurationName)" == "Debug" (copy "$(TargetPath)" "$(ProjectDir)\..\..\BepInEx\plugins\$(TargetFileName)") ELSE (mkdir $(TargetDir)BepInEx\plugins\
+copy /Y "$(TargetDir)$(TargetFileName)" "$(TargetDir)BepInEx\plugins\$(TargetFileName)"
+powershell.exe -command Compress-Archive -Force -Path BepInEx $(TargetName).zip)</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+
+</PreBuildEvent>
+  </PropertyGroup>
 </Project>
