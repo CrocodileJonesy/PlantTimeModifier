@@ -68,20 +68,21 @@ namespace PlantTimeModifier
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(GetActionsClass.Class1604), nameof(GetActionsClass.Class1604.method_0));
+            // Class located in GetActionsClass
+            return AccessTools.Method(typeof(GetActionsClass.Class1647), nameof(GetActionsClass.Class1647.method_0)); 
         }
 
         //Save list of objective zoneId's and plantTime to and make sure we're multiplying the base plantTime value on repeat actions
         static List<KeyValuePair<string, float>> LeaveItemList = new List<KeyValuePair<string, float>>(); //zoneId, plantTime
 
         [PatchPrefix]
-        static void Prefix(GetActionsClass.Class1604 __instance)
+        static void Prefix(GetActionsClass.Class1647 __instance)
         {
             if (!Plugin.enabledPlugin.Value)
                 return;
 
             float plantTime;
-            ConditionLeaveItemAtLocation itemToPlant = __instance.class1602_0.resultLeaveItem;
+            ConditionLeaveItemAtLocation itemToPlant = __instance.class1645_0.resultLeaveItem;
             var pair = LeaveItemList.FirstOrDefault(p => p.Key == itemToPlant.zoneId);
             if (pair.Key != null)
             {
@@ -116,14 +117,15 @@ namespace PlantTimeModifier
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(GetActionsClass.Class1605), nameof(GetActionsClass.Class1605.method_0));
+            // 
+            return AccessTools.Method(typeof(GetActionsClass.Class1648), nameof(GetActionsClass.Class1648.method_0)); // Class is usually +1 of above class on line 71
         }
 
         //Save list of objective zoneId's and plantTime to and make sure we're multiplying the base plantTime value on repeat actions
         static List<KeyValuePair<string, float>> ResultBeaconList = new List<KeyValuePair<string, float>>(); //zoneId, plantTime
 
         [PatchPrefix]
-        static void Prefix(GetActionsClass.Class1605 __instance)
+        static void Prefix(GetActionsClass.Class1648 __instance)
         {
             if (!Plugin.enabledPlugin.Value)
                 return;
