@@ -157,4 +157,6 @@ namespace PlantTimeModifier
 #endif
         }
     }
+
+    // TODO: implement diarming tripwire class? Looks like class 1641 is tripwire code
 }
