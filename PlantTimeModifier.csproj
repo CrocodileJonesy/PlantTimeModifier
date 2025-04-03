@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationManagerAttributes.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,7 +103,7 @@ mkdir $(TargetDir)BepInEx\plugins\
 
 copy /Y "$(TargetDir)$(TargetFileName)" "$(TargetDir)BepInEx\plugins\$(TargetFileName)"
 
-powershell.exe -command Compress-Archive -Force -Path $(TargetDir)BepInEx $(TargetDir)$(TargetName).zip)</PostBuildEvent>
+powershell.exe -command Compress-Archive -Force -Path $(TargetDir)BepInEx $(TargetDir)\utjan.$(TargetName).zip)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
