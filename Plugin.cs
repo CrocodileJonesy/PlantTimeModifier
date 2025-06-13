@@ -22,12 +22,15 @@ using DisarmTrapClass = GetActionsClass.Class1641; // Disarm tripwire, this usua
 
 // TODO: Add bool to ignore multitool for tripwires?
 
+
 namespace PlantTimeModifier
 {
     // TODO: DONT FORGET TO UPDATE VERSION NUMBER
-    [BepInPlugin("com.utjan.PlantTimeModifier", "utjan.PlantTimeModifier", "1.3.0")]
+    [BepInPlugin("com.utjan.PlantTimeModifier", "utjan.PlantTimeModifier", MOD_VER)]
     public class Plugin : BaseUnityPlugin
     {
+        const string MOD_VER = "1.3.1";
+        
         public static ManualLogSource LogSource;
 
         internal static ConfigEntry<bool> enabledPlugin;
@@ -38,6 +41,7 @@ namespace PlantTimeModifier
 
         private void Awake() //Awake() will run once when your plugin loads
         {
+            // Setup config menu options
             enabledPlugin = Config.Bind(
                 "Main Settings",
                 "Enable Mod",
@@ -75,9 +79,13 @@ namespace PlantTimeModifier
 
             LogSource = Logger;
 
+            // Load patches
             new LeaveItemPatch().Enable();
             new BeaconPlantPatch().Enable();
             new DisarmTripPatch().Enable();
+
+            // Specify version
+            LogSource.LogInfo($"Loaded Plant time modifier v{MOD_VER}");
         }
     }
 
